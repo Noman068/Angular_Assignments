@@ -1,0 +1,69 @@
+<div class="contact-details-container">
+  <div *ngIf="contact; else noSelection" class="contact-details">
+    <!-- Contact Header -->
+    <div class="contact-header">
+      <h2 class="contact-name">{{ contact.name }}</h2>
+      <div class="contact-badges">
+        <span 
+          *ngFor="let group of contact.groups" 
+          class="badge"
+          [class.favourite]="group === 'Favourites'"
+          [class.group]="group !== 'Favourites'">
+          {{ group === 'Favourites' ? '⭐' : group }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="contact-info">
+      <div class="info-item">
+        <span class="label">📞 Phone:</span>
+        <span class="value">{{ contact.phone }}</span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">📧 Email:</span>
+        <span class="value">{{ contact.email }}</span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">👤 Gender:</span>
+        <span class="value">{{ contact.gender }}</span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">📍 Address:</span>
+        <span class="value">{{ contact.address }}</span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">🆔 ID:</span>
+        <span class="value">{{ contact.id }}</span>
+      </div>
+    </div>
+
+    <!-- Group Management -->
+    <div class="group-management">
+      <h3>Manage Groups</h3>
+      <div class="group-buttons">
+        <button 
+          *ngFor="let group of groups"
+          [class]="getGroupButtonClass(group)"
+          (click)="onGroupToggle(group)"
+          class="group-btn">
+          {{ getGroupButtonText(group) }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Selection Template -->
+  <ng-template #noSelection>
+    <div class="no-selection">
+      <div class="no-selection-content">
+        <h3>👤 Select a Contact</h3>
+        <p>Choose a contact from the list to view their details and manage their groups.</p>
+      </div>
+    </div>
+  </ng-template>
+</div>
