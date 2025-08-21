@@ -1,11 +1,12 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Contact, FilterType } from '../../models/contact.model';
+import { HighlightPipe } from '../../pipes/highlight.pipe';
 
 @Component({
   selector: 'app-contact-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HighlightPipe],
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.scss']
 })
@@ -13,6 +14,7 @@ export class ContactListComponent implements OnInit, OnDestroy {
   @Input() contacts: Contact[] = [];
   @Input() selectedContactId: number | null = null;
   @Input() currentFilter: FilterType = 'All';
+  @Input() searchTerm: string = '';
   
   @Output() contactSelected = new EventEmitter<Contact>();
   @Output() filterChanged = new EventEmitter<FilterType>();

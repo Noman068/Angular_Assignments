@@ -1,0 +1,115 @@
+<div class="add-contact-container">
+  <div class="add-contact-card">
+    <header class="form-header">
+      <h1>➕ Add New Contact</h1>
+      <p>Fill in the details below to add a new contact to your dashboard</p>
+    </header>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+      <!-- Name Field -->
+      <div class="form-group">
+        <label for="name">👤 Full Name *</label>
+        <input 
+          type="text" 
+          id="name"
+          formControlName="name"
+          placeholder="Enter full name (start with letter)"
+          class="form-input"
+          [class.error]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+        <div class="error-message" *ngIf="getFieldError('name')">
+          {{ getFieldError('name') }}
+        </div>
+      </div>
+
+      <!-- Phone Field -->
+      <div class="form-group">
+        <label for="phone">📞 Phone Number *</label>
+        <input 
+          type="tel" 
+          id="phone"
+          formControlName="phone"
+          placeholder="03XXXXXXXXX (11 digits)"
+          class="form-input"
+          [class.error]="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched">
+        <div class="error-message" *ngIf="getFieldError('phone')">
+          {{ getFieldError('phone') }}
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email">📧 Email Address *</label>
+        <input 
+          type="email" 
+          id="email"
+          formControlName="email"
+          placeholder="Enter email address"
+          class="form-input"
+          [class.error]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+        <div class="error-message" *ngIf="getFieldError('email')">
+          {{ getFieldError('email') }}
+        </div>
+      </div>
+
+      <!-- Gender Field -->
+      <div class="form-group">
+        <label for="gender">👤 Gender *</label>
+        <select 
+          id="gender"
+          formControlName="gender"
+          class="form-select">
+          <option *ngFor="let gender of genders" [value]="gender">
+            {{ gender.charAt(0).toUpperCase() + gender.slice(1) }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Address Field -->
+      <div class="form-group">
+        <label for="address">📍 Address *</label>
+        <textarea 
+          id="address"
+          formControlName="address"
+          placeholder="Enter full address"
+          rows="3"
+          class="form-textarea"
+          [class.error]="contactForm.get('address')?.invalid && contactForm.get('address')?.touched"></textarea>
+        <div class="error-message" *ngIf="getFieldError('address')">
+          {{ getFieldError('address') }}
+        </div>
+      </div>
+
+      <!-- Groups Field -->
+      <div class="form-group">
+        <label>🏷️ Groups</label>
+        <div class="group-buttons">
+          <button 
+            type="button"
+            *ngFor="let group of groups"
+            (click)="onGroupToggle(group)"
+            [class]="getGroupButtonClass(group)"
+            class="group-btn">
+            {{ getGroupButtonText(group) }}
+          </button>
+        </div>
+        <small class="help-text">Select one or more groups for this contact</small>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button 
+          type="button" 
+          (click)="onCancel()"
+          class="btn btn-secondary">
+          ❌ Cancel
+        </button>
+        <button 
+          type="submit" 
+          [disabled]="contactForm.invalid"
+          class="btn btn-primary">
+          ✅ Add Contact
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

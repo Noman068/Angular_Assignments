@@ -19,7 +19,7 @@
       class="contact-card">
       
       <div class="contact-header">
-        <h3 class="contact-name">{{ contact.name }}</h3>
+        <h3 class="contact-name" [innerHTML]="contact.name | highlight:searchTerm"></h3>
         <div class="contact-badges">
           <span 
             *ngIf="contact.groups.includes('Favourites')" 

@@ -108,6 +108,11 @@ export class ContactService {
   getContactById(id: number): Contact | undefined {
     return this.contacts.find(contact => contact.id === id);
   }
+
+  addContact(contact: Contact): void {
+    this.contacts.push(contact);
+  }
 }
+
 
 

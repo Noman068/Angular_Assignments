@@ -1,0 +1,42 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>{{ title }}</h1>
+    <p>Manage your contacts with ease - Filter, view, and organize your contact groups</p>
+    <button class="add-contact-btn" (click)="onAddContact()">
+      ➕ Add New Contact
+    </button>
+  </header>
+
+  <main class="dashboard-main">
+    <!-- Left Panel - Contact List -->
+    <section class="left-panel">
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()"
+          placeholder="Search by name"
+          class="search-input"
+          appAlphaSpace>
+      </div>
+
+      <app-contact-list
+        [contacts]="filteredContacts"
+        [selectedContactId]="selectedContact?.id || null"
+        [currentFilter]="currentFilter"
+        [searchTerm]="searchTerm"
+        (contactSelected)="onContactSelected($event)"
+        (filterChanged)="onFilterChanged($event)">
+      </app-contact-list>
+    </section>
+
+    <!-- Right Panel - Contact Details -->
+    <section class="right-panel">
+      <app-contact-details
+        [contact]="selectedContact"
+        (groupToggled)="onGroupToggled($event)">
+      </app-contact-details>
+    </section>
+  </main>
+</div>
