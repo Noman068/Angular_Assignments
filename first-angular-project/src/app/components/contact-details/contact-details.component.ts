@@ -1,11 +1,10 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Contact } from '../../models/contact.model';
 
 @Component({
   selector: 'app-contact-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './contact-details.component.html',
   styleUrls: ['./contact-details.component.scss']
 })

@@ -1,16 +1,19 @@
 <div class="contact-details-container">
-  <div *ngIf="contact; else noSelection" class="contact-details">
+ 
+    <div class="contact-details">
+       @if (contact) {
     <!-- Contact Header -->
     <div class="contact-header">
       <h2 class="contact-name">{{ contact.name }}</h2>
       <div class="contact-badges">
-        <span 
-          *ngFor="let group of contact.groups" 
-          class="badge"
-          [class.favourite]="group === 'Favourites'"
-          [class.group]="group !== 'Favourites'">
-          {{ group === 'Favourites' ? '⭐' : group }}
-        </span>
+        @for (group of contact.groups; track group) {
+          <span 
+            class="badge"
+            [class.favourite]="group === 'Favourites'"
+            [class.group]="group !== 'Favourites'">
+            {{ group === 'Favourites' ? '⭐' : group }}
+          </span>
+        }
       </div>
     </div>
 
@@ -46,24 +49,23 @@
     <div class="group-management">
       <h3>Manage Groups</h3>
       <div class="group-buttons">
-        <button 
-          *ngFor="let group of groups"
-          [class]="getGroupButtonClass(group)"
-          (click)="onGroupToggle(group)"
-          class="group-btn">
-          {{ getGroupButtonText(group) }}
-        </button>
+        @for (group of groups; track group) {
+          <button 
+            [class]="getGroupButtonClass(group)"
+            (click)="onGroupToggle(group)"
+            class="group-btn">
+            {{ getGroupButtonText(group) }}
+          </button>
+        }
       </div>
     </div>
-  </div>
-
-  <!-- No Selection Template -->
-  <ng-template #noSelection>
+  }
+   @else {
     <div class="no-selection">
       <div class="no-selection-content">
         <h3>👤 Select a Contact</h3>
         <p>Choose a contact from the list to view their details and manage their groups.</p>
       </div>
     </div>
-  </ng-template>
+  }
 </div>

@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContactListComponent } from '../contact-list/contact-list.component';
@@ -13,7 +12,6 @@ import { AlphaSpaceDirective } from '../../directives/alpha-space.directive';
   selector: 'app-dashboard',
   standalone: true,
   imports: [
-    CommonModule, 
     FormsModule, 
     ReactiveFormsModule,
     ContactListComponent, 

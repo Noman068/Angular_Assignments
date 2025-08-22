@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContactService } from '../../services/contact.service';
@@ -8,7 +7,7 @@ import { Contact } from '../../models/contact.model';
 @Component({
   selector: 'app-add-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './add-contact.component.html',
   styleUrl: './add-contact.component.scss'
 })
