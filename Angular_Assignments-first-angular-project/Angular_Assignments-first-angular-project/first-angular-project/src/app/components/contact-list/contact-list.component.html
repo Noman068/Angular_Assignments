@@ -1,0 +1,47 @@
+<div class="contact-list-container">
+  <!-- Filter Buttons -->
+  <div class="filter-buttons">
+    <button 
+      *ngFor="let filter of filters" 
+      [class.active]="isFilterActive(filter)"
+      (click)="onFilterClick(filter)"
+      class="filter-btn">
+      {{ filter }}
+    </button>
+  </div>
+
+  <!-- Contact List -->
+  <div class="contacts-container">
+    <div 
+      *ngFor="let contact of contacts" 
+      [class.selected]="isContactSelected(contact)"
+      (click)="onContactClick(contact)"
+      class="contact-card">
+      
+      <div class="contact-header">
+        <h3 class="contact-name">{{ contact.name }}</h3>
+        <div class="contact-badges">
+          <span 
+            *ngIf="contact.groups.includes('Favourites')" 
+            class="badge favourite">
+            ⭐
+          </span>
+          <span 
+            *ngFor="let group of getGroupBadges(contact)" 
+            class="badge group">
+            {{ group }}
+          </span>
+        </div>
+      </div>
+      
+      <div class="contact-info">
+        <p class="contact-phone">📞 {{ contact.phone }}</p>
+        <p class="contact-email">📧 {{ contact.email }}</p>
+      </div>
+      
+      <div class="contact-footer">
+        <span class="contact-gender">{{ contact.gender }}</span>
+      </div>
+    </div>
+  </div>
+</div>
